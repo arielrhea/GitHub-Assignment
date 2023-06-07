@@ -21,26 +21,22 @@
       max-height: 100%;
       cursor: pointer;
       transition: opacity 0.5s ease;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      z-index: -1;
-      opacity: 0;
     }
 
     .image-container img.active {
-      z-index: 1;
       opacity: 1;
+    }
+
+    .image-container img.inactive {
+      opacity: 0;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg" alt="Cat">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg" alt="Dog">
+    <img src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg" alt="Cat" class="active">
+    <img src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg" alt="Dog" class="inactive">
   </div>
 
   <script>
