@@ -19,14 +19,68 @@
     .image-container img {
       max-width: 100%;
       max-height: 100%;
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+    }
+
+    .fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .fullscreen img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .fadeIn {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg" alt="Cat">
-
-    <img src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg?crop=0.447xw:1.00xh;0.187xw,0&resize=980:*" alt="Dog">
+    <img class="cat-image" src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg" alt="Cat">
+    <img class="dog-image hidden" src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg" alt="Dog">
   </div>
+
+  <script>
+    const catImage = document.querySelector('.cat-image');
+    const dogImage = document.querySelector('.dog-image');
+
+    catImage.addEventListener('click', () => {
+      catImage.classList.add('hidden');
+      dogImage.classList.remove('hidden');
+      document.body.classList.add('fullscreen');
+      setTimeout(() => {
+        document.body.classList.add('fadeIn');
+      }, 0);
+    });
+
+    dogImage.addEventListener('click', () => {
+      dogImage.classList.add('hidden');
+      catImage.classList.remove('hidden');
+      document.body.classList.remove('fadeIn');
+      setTimeout(() => {
+        document.body.classList.remove('fullscreen');
+      }, 500);
+    });
+  </script>
 </body>
 </html>
