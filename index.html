@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Cat and Dog Images</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <title>Image Transition</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
 
-    .image-container {
-      text-align: center;
-    }
+        .image-container {
+            position: relative;
+            height: 100%;
+        }
 
-    .image-container img {
-      max-width: 100%;
-      max-height: 100%;
-      cursor: pointer;
-      transition: opacity 0.5s ease;
-    }
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-    .image-container img.active {
-      opacity: 1;
-    }
+        .image-container img.active {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".image-container img");
 
-    .image-container img.inactive {
-      opacity: 0;
-      pointer-events: none;
-    }
-  </style>
+            images.forEach(function(img) {
+                img.addEventListener("click", function() {
+                    // Find the active image
+                    const activeImage = document.querySelector(".image-container img.active");
+
+                    // Toggle the active class
+                    activeImage.classList.remove("active");
+                    this.classList.add("active");
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-  <div class="image-container">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg" alt="Cat" class="active">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg" alt="Dog" class="inactive">
-  </div>
-
-  <script>
-    const images = document.querySelectorAll('.image-container img');
-
-    function toggleImage() {
-      images.forEach((image) => image.classList.toggle('active'));
-    }
-
-    images.forEach((image) => {
-      image.addEventListener('click', toggleImage);
-    });
-  </script>
+    <div class="image-container">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/domestic-cat-lies-in-a-basket-with-a-knitted-royalty-free-image-1592337336.jpg?crop=0.668xw:1.00xh;0.247xw,0&resize=1200:*" alt="Cat" class="active">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/happy-dog-outdoors-royalty-free-image-1652927740.jpg?crop=0.447xw:1.00xh;0.187xw,0&resize=980:*" alt="Dog">
+    </div>
 </body>
 </html>
